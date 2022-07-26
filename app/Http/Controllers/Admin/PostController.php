@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -17,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.posts.index', ["posts" => Post::all()]);
+        $posts = Auth::user()->posts;
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -54,6 +56,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->fill($data);
+        $post->user_id = Auth::id();
         $post->save();
 
         if (isset($data['tags'])) {
