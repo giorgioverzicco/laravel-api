@@ -1,13 +1,16 @@
 <template>
     <div>
-        <h1>Hello, by Vue 2</h1>
+        <BaseHeader />
+        <BaseMain />
     </div>
 </template>
 
 <script>
+import BaseHeader from "../components/BaseHeader";
+import BaseMain from "../components/BaseMain";
 export default {
     name: "App",
-    components: {},
+    components: {BaseMain, BaseHeader},
 };
 </script>
 

@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)
                     ->with(['category', 'tags', 'user'])
-                    ->get();
+                    ->first();
         return response()->json($post);
     }
 }
